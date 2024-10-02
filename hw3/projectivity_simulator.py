@@ -42,10 +42,13 @@ def affine_rectification(points):
     # TODO #2: Compute their vanishing point (the intersection point of lines on 'projectivity'.
     #      (Note: Write inhomogenous coordinate of vanishing point in your report)
     banana1 = banana(picked_points[0], picked_points[1], picked_points[2], picked_points[3])
+    print(banana1)
     
     # TODO #3: Similarly, assign two points of second parallel lines and compute their vanishing point.
     #      (Note: Provide your selected points and inhomgeneous coordinate of second vanishing point in a similar manner)
     banana2 = banana(picked_points[0], picked_points[2], picked_points[1], picked_points[3])
+    print(banana2)
+    
 
     # TODO #4: Determine the line at infinity l' on the image by connecting two vanishing point
     #      (Note: please report line at infity with 3rd coordinate = 1)
@@ -58,7 +61,6 @@ def affine_rectification(points):
 
     # TODO #5: Rectify all points by rectified_points = H * points, where H: [1 0 0; 0 1 0; l_1/l_3 l_2/l_3 1], and l'=[l_1; l_2; l_3]
     H = np.array([[1, 0, 0], [0, 1, 0], [l_1/l_3, l_2/l_3, 1]])
-    
     for point in points:
         #[x, y, 1]
         homopoint = [point[0], point[1], 1]
@@ -85,8 +87,12 @@ camera = Camera(fov, image_w, image_h)
 # Points after similarity
 # 1. Project the grids without pre-rotation 
 similarity_points = []
+count = 0
 for point in points:
+    # if count == 9 or count == 11 or count == 21 or count == 23:
+    #     point = [point[0] + 10, point[1] - 10, point[2]]
     similarity_points.append(camera.project_to_image_position(point))
+    count += 1
 
 # Points after projective
 # 1.Rotate the grids
@@ -100,10 +106,8 @@ for point in points:
     rotated_points.append(Ry @ Rx @ np.array(point))
 # 2.Project the grids to the image plane
 projective_points = []
-count = 0
 for point in rotated_points:
     projective_points.append(camera.project_to_image_position(point))
-    count += 1
 
 # Affine rectification for the projected points
 affine_points = affine_rectification(projective_points)

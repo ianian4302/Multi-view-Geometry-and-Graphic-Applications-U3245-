@@ -32,7 +32,6 @@ def affine_rectification(points):
     #      (Hint: you can choose the points from the dump image or print projective points at specific row and column)
     #      (Note: Draw selected points on image 'projectivity' and attach them in your report)
     #   grid 9 * 12
-    #70, 77, 94, 101
     #9, 11, 21, 23
     a = 0
     picked_points = []
@@ -101,8 +100,10 @@ for point in points:
     rotated_points.append(Ry @ Rx @ np.array(point))
 # 2.Project the grids to the image plane
 projective_points = []
+count = 0
 for point in rotated_points:
     projective_points.append(camera.project_to_image_position(point))
+    count += 1
 
 # Affine rectification for the projected points
 affine_points = affine_rectification(projective_points)

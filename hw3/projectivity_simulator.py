@@ -33,7 +33,6 @@ def affine_rectification(points):
     #      (Note: Draw selected points on image 'projectivity' and attach them in your report)
     #   grid 9 * 12
     #9, 11, 21, 23
-    a = 0
     picked_points = []
     picked_points.append(points[9])
     picked_points.append(points[11])

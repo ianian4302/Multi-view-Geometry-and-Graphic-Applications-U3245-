@@ -95,14 +95,14 @@ distorted_image = cv2.imread('images/tilted.png')
 # 2. Draw selected points on the images and attach them in your report
 
 correspondences = [
-    [[528, 41], [540, 41]],
+    [[528, 41], [535, 41]],
     [[715, 36], [715, 35]],
     [[528, 351], [528, 350]],
     [[710, 346], [710, 345]],
-    [[276,404], [276, 404]],
-    [[576,392], [576, 392]],
-    [[282, 575], [282, 575]],
-    [[572, 569], [572, 569]]
+    # [[276, 404], [276, 404]],
+    # [[576, 392], [576, 392]],
+    # [[282, 575], [282, 575]],
+    # [[572, 569], [572, 569]]
 ]
 for i, ((x, y), (x_prime, y_prime)) in enumerate(correspondences):
     plt.plot(x ,y ,marker='v' ,color="red" ) 

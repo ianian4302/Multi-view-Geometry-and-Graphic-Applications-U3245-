@@ -25,9 +25,10 @@ class DirectLinearTransformer():
             X_i_hom = [X, Y, Z, 1]
             zeros = [0, 0, 0, 0]
             # First row
-            row1 = X_i_hom + zeros + [-x * X for X in X_i_hom]
+            # -1 * X_i_hom
+            row1 = zeros + [-1 * X for X in X_i_hom] + [y * X for X in X_i_hom]
             # Second row
-            row2 = zeros + X_i_hom + [-y * X for X in X_i_hom]
+            row2 = X_i_hom + zeros + [-x * X for X in X_i_hom]
             A.append(row1)
             A.append(row2)
         A = np.array(A)
@@ -72,7 +73,7 @@ def calculate_error(correspondences, target_matrix):
         x_i_proj = x_i_proj[:2]  # Only x and y
         x_i = np.array(x_i)
         # Euclidean distance between projected point and observed point
-        error += np.linalg.norm(x_i - x_i_proj)
+        error += np.linalg.norm(x_i - x_i_proj) ** 0.5
     error /= num_corr
     return error
 

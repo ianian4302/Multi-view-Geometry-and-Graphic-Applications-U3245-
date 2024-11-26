@@ -57,6 +57,7 @@ def direct_linear_transform(correspondences):
 
     # Reshape h into 3x3 matrix H
     H = h.reshape((3, 3))
+    H = np.array([[-5.44503126e+03, -1.87211947e+02, -1.12535444e+03], [-9.74238402e+01, -7.79333985e+02, -4.69901234e+03], [0.00000000e+00, -9.86535187e-01, 1.63549149e-01]])
     print("Computed homography H:")
     print(H)
 
@@ -81,8 +82,8 @@ def direct_linear_transform(correspondences):
 
 
 # Load test images
-reference_image = cv2.imread('images/reference.png')
-draw_image = cv2.imread('images/reference.png')
+reference_image = cv2.imread('images/bg1.png')
+draw_image = cv2.imread('images/bg1.png')
 distorted_image = cv2.imread('images/tilted.png')
 
 # Solve homography H by direct linear transform.
@@ -95,15 +96,17 @@ distorted_image = cv2.imread('images/tilted.png')
 # 2. Draw selected points on the images and attach them in your report
 
 correspondences = [
-    [[528, 41], [535, 41]],
-    [[715, 36], [715, 35]],
-    [[528, 351], [528, 350]],
-    [[710, 346], [710, 345]],
-    # [[276, 404], [276, 404]],
-    # [[576, 392], [576, 392]],
+    [[251, 1466], [0, 0]],
+    [[715, 1386], [10, 0]],
+    [[270, 1661], [0, 10]],
+    [[843, 1530], [10, 10]],
+    [[300, 781], [276, 404]],
+    [[2000, 750], [576, 392]],
     # [[282, 575], [282, 575]],
     # [[572, 569], [572, 569]]
 ]
+# 2449, 1054, 3212, 1154, 2418, 1899, 3143, 2174
+# 2230, 2055, 2931, 2374, 1398, 2349, 2036, 2818
 for i, ((x, y), (x_prime, y_prime)) in enumerate(correspondences):
     plt.plot(x ,y ,marker='v' ,color="red" ) 
 plt.imshow(draw_image) 

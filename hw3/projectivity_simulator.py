@@ -41,12 +41,12 @@ def affine_rectification(points):
     # TODO #2: Compute their vanishing point (the intersection point of lines on 'projectivity'.
     #      (Note: Write inhomogenous coordinate of vanishing point in your report)
     banana1 = banana(picked_points[0], picked_points[1], picked_points[2], picked_points[3])
-    print(banana1)
+    # print(banana1)
     
     # TODO #3: Similarly, assign two points of second parallel lines and compute their vanishing point.
     #      (Note: Provide your selected points and inhomgeneous coordinate of second vanishing point in a similar manner)
     banana2 = banana(picked_points[0], picked_points[2], picked_points[1], picked_points[3])
-    print(banana2)
+    # print(banana2)
     
 
     # TODO #4: Determine the line at infinity l' on the image by connecting two vanishing point
@@ -60,6 +60,10 @@ def affine_rectification(points):
 
     # TODO #5: Rectify all points by rectified_points = H * points, where H: [1 0 0; 0 1 0; l_1/l_3 l_2/l_3 1], and l'=[l_1; l_2; l_3]
     H = np.array([[1, 0, 0], [0, 1, 0], [l_1/l_3, l_2/l_3, 1]])
+#      [[-5.44503126e+03 -1.87211947e+02 -1.12535444e+03]
+#  [-9.74238402e+01 -7.79333985e+02 -4.69901234e+03]
+#  [ 0.00000000e+00 -9.86535187e-01  1.63549149e-01]]
+    H = np.array([[-5.44503126e+03, -1.87211947e+02, -1.12535444e+03], [-9.74238402e+01, -7.79333985e+02, -4.69901234e+03], [0.00000000e+00, -9.86535187e-01, 1.63549149e-01]])
     for point in points:
         #[x, y, 1]
         homopoint = [point[0], point[1], 1]

@@ -84,7 +84,3 @@ F = eight_points_algorithm.denormalize_F(F, T, T2)
 print("Determinant of the fundamental matrix (rank-2 constraint enforced):", np.linalg.det(F_prime))
 # 0.029826252985013856
 print("Determinant of the fundamental matrix:", np.linalg.det(F))
-
-# F -> H, H + pointA -> pointC
-# ponitA, pointB
-# pointB == pointC 
